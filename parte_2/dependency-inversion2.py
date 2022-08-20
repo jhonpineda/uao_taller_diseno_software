@@ -3,47 +3,47 @@ from abc import ABC, abstractmethod
 
 class Switchable(ABC):
     @abstractmethod
-    def turn_on(self):
+    def encendido(self):
         pass
 
     @abstractmethod
-    def turn_off(self):
+    def apagado(self):
         pass
 
 
-class LightBulb(Switchable):
-    def turn_on(self):
-        print("LightBulb: turned on...")
+class LuzBombilla(Switchable):
+    def encendido(self):
+        print("LuzBombilla: turned on...")
 
-    def turn_off(self):
-        print("LightBulb: turned off...")
-
-
-class Fan(Switchable):
-    def turn_on(self):
-        print("Fan: turned on...")
-
-    def turn_off(self):
-        print("Fan: turned off...")
+    def apagado(self):
+        print("LuzBombilla: turned off...")
 
 
-class ElectricPowerSwitch:
+class Ventilador(Switchable):
+    def encendido(self):
+        print("Ventilador: turned on...")
+
+    def apagado(self):
+        print("Ventilador: turned off...")
+
+
+class InterruptorElectrico:
 
     def __init__(self, c: Switchable):
-        self.client = c
+        self.cliente = c
         self.on = False
 
     def press(self):
         if self.on:
-            self.client.turn_off()
+            self.cliente.apagado()
             self.on = False
         else:
-            self.client.turn_on()
+            self.cliente.encendido()
             self.on = True
 
 
-l = LightBulb()
-f = Fan()
-switch = ElectricPowerSwitch(f)
+l = LuzBombilla()
+f = Ventilador()
+switch = InterruptorElectrico(f)
 switch.press()
 switch.press()
